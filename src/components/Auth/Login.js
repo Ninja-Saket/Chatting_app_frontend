@@ -1,5 +1,6 @@
 import React from "react";
 import loginImage from "../../assets/images/login.svg";
+import { Link } from "react-router-dom";
 import "./Auth.scss";
 const Login = () => {
   return (
@@ -18,9 +19,11 @@ const Login = () => {
               <div className="input-field mb-2">
                 <input placeholder="Password" />
               </div>
-              <button>lOGIN</button>
+              <button>LOGIN</button>
             </form>
-            <p>Don't have an account? Register</p>
+            <p>
+              Don't have an account? <Link to="/register">Register</Link>
+            </p>
           </div>
         </div>
       </div>
