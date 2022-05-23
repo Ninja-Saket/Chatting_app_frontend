@@ -1,4 +1,4 @@
-import LOGIN from "../actions/auth";
+import { LOGIN } from "../actions/auth";
 
 const initialState = {
   user: {},
