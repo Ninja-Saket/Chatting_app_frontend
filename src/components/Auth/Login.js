@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import loginImage from "../../assets/images/login.svg";
 import { Link } from "react-router-dom";
-import AuthService from "../../services/authService";
 import "./Auth.scss";
+
+import { useDispatch } from "react-redux";
+import { login } from "../../store/actions/auth";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const submitForm = (event) => {
     event.preventDefault();
-    AuthService.login({ email, password }).then((res) => console.log(res));
+
+    dispatch(login({ email, password })).then(navigate("/"));
+    // AuthService.login({ email, password }).then((res) => console.log(res));
     // axios
     //   .post("http://127.0.0.1:3000/login", { email, password })
     //   .then((res) => {
