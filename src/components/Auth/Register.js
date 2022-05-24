@@ -18,7 +18,7 @@ const Register = () => {
     event.preventDefault();
 
     dispatch(register({ firstName, lastName, email, gender, password })).then(
-      navigate("/")
+      () => navigate("/")
     );
     // AuthService.login({ email, password }).then((res) => console.log(res));
     // axios
