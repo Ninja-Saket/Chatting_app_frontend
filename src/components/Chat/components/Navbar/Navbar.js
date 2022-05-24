@@ -5,7 +5,7 @@ const Navbar = () => {
   const user = useSelector((state) => state.authReducer.user);
 
   return (
-    <div id="navbar">
+    <div id="navbar" className="card-shadow">
       <h2>Chat.io</h2>
       <div id="profile-menu">
         <img src="" alt="Avatar" />
