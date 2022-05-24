@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import loginImage from "../../assets/images/login.svg";
 import { Link } from "react-router-dom";
 import "./Auth.scss";
-
 import { useDispatch } from "react-redux";
 import { login } from "../../store/actions/auth";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +14,9 @@ const Login = () => {
   const submitForm = (event) => {
     event.preventDefault();
 
-    dispatch(login({ email, password })).then(navigate("/"));
+    dispatch(login({ email, password })).then(() => {
+      navigate("/");
+    });
     // AuthService.login({ email, password }).then((res) => console.log(res));
     // axios
     //   .post("http://127.0.0.1:3000/login", { email, password })
@@ -27,6 +28,7 @@ const Login = () => {
     //   });
     console.log({ email, password });
   };
+
   return (
     <div id="auth-container">
       <div id="auth-card">
