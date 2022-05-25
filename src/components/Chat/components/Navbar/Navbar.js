@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { logout } from "../../../../store/actions/auth";
 import "./Navbar.scss";
 const Navbar = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
   const [showProfileOptions, setShowProfileOptions] = useState(false);
 
@@ -22,7 +24,7 @@ const Navbar = () => {
         {showProfileOptions && (
           <div id="profile-options">
             <p>Update profile</p>
-            <p>Logout</p>
+            <p onClick={() => dispatch(logout())}>Logout</p>
           </div>
         )}
       </div>
