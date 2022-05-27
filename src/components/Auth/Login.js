@@ -17,16 +17,6 @@ const Login = () => {
     dispatch(login({ email, password })).then(() => {
       navigate("/");
     });
-    // AuthService.login({ email, password }).then((res) => console.log(res));
-    // axios
-    //   .post("http://127.0.0.1:3000/login", { email, password })
-    //   .then((res) => {
-    //     console.log("res", res);
-    //   })
-    //   .catch((err) => {
-    //     console.log("err", err);
-    //   });
-    console.log({ email, password });
   };
 
   return (
