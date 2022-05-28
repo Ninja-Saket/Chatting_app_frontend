@@ -1,10 +1,18 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { setCurrentChat } from "../../../../store/actions/chat";
 import Friend from "../Friend/Friend";
+
 import "./FriendList.scss";
 
 const FriendList = () => {
+  const dispatch = useDispatch();
   const chats = useSelector((state) => state.chatReducer.chats);
+
+  const openChat = (chat) => {
+    dispatch(setCurrentChat(chat));
+  };
+
   return (
     <div id="friends">
       <div id="title">
@@ -15,7 +23,9 @@ const FriendList = () => {
       <div id="friends-box">
         {chats.length > 0 ? (
           chats.map((chat) => {
-            return <Friend chat={chat} key={chat.id} />;
+            return (
+              <Friend chat={chat} key={chat.id} click={() => openChat(chat)} />
+            );
           })
         ) : (
           <p id="no-chat">No friends added</p>

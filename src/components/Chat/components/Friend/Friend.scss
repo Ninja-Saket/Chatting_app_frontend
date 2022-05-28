@@ -1,0 +1,44 @@
+.friend-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  cursor: pointer;
+  flex-direction: column;
+  min-width: fit-content;
+
+  & > div {
+    display: flex;
+
+    img {
+      display: flex;
+      align-self: center;
+      margin-right: 5px;
+    }
+
+    .friend-info {
+      display: flex;
+      align-self: center;
+      flex-direction: column;
+    }
+  }
+
+  .friend-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .online {
+      background-color: green;
+      height: 5px;
+      width: 5px;
+      border-radius: 50%;
+    }
+
+    .offline {
+      background-color: red;
+      height: 5px;
+      width: 5px;
+      border-radius: 50%;
+    }
+  }
+}
