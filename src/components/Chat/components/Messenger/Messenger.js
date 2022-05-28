@@ -1,0 +1,8 @@
+import React from "react";
+import "./Messenger.scss";
+
+const Messenger = () => {
+  return <h1>Messenger</h1>;
+};
+
+export default Messenger;
