@@ -1,8 +1,12 @@
 import React from "react";
 import "./Friend.scss";
 
-const Friend = () => {
-  return <h1>Friend</h1>;
+const Friend = ({ chat }) => {
+  return (
+    <p>
+      {chat.Users[0].firstName} {chat.Users[0].lastName}
+    </p>
+  );
 };
 
 export default Friend;
