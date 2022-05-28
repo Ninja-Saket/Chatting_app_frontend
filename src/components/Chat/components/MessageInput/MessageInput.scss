@@ -1,0 +1,29 @@
+@import "../../../../assets/scss/variables";
+
+#input-container {
+  position: relative;
+
+  #message-input {
+    position: relative;
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  .fa-icon {
+    font-size: 20px;
+    color: $bg-main;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    cursor: pointer;
+  }
+
+  input {
+    border: none;
+    background-color: #f5f6f8;
+    padding: 10px;
+  }
+}
