@@ -3,7 +3,7 @@
   justify-content: space-between;
   padding: 15px;
   cursor: pointer;
-  flex-direction: column;
+  flex-direction: row;
   min-width: fit-content;
 
   & > div {
@@ -24,6 +24,7 @@
 
   .friend-status {
     display: flex;
+    padding-left: 1rem;
     align-items: center;
     justify-content: center;
 
