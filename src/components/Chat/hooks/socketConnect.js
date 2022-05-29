@@ -4,6 +4,7 @@ import {
   onlineFriends,
   onlineFriend,
   offlineFriend,
+  setSocket,
 } from "../../../store/actions/chat";
 import socketIOClient from "socket.io-client";
 
@@ -12,6 +13,8 @@ const useSocket = (user, dispatch) => {
     dispatch(fetchChats())
       .then((res) => {
         const socket = socketIOClient.connect("http://127.0.0.1:3000");
+
+        dispatch(setSocket(socket));
         socket.emit("join", user);
         socket.on("typing", (user) => {
           console.log("Event", user);
