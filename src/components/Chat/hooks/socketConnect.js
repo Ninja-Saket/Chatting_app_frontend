@@ -5,6 +5,7 @@ import {
   onlineFriend,
   offlineFriend,
   setSocket,
+  receivedMessage,
 } from "../../../store/actions/chat";
 import socketIOClient from "socket.io-client";
 
@@ -30,6 +31,9 @@ const useSocket = (user, dispatch) => {
         socket.on("offline", (user) => {
           console.log("Offline", user);
           dispatch(offlineFriend(user));
+        });
+        socket.on("received", (message) => {
+          dispatch(receivedMessage(message, user.id));
         });
 
         console.log(res);
