@@ -1,5 +1,9 @@
 import { useEffect } from "react";
-import { onlineFriends } from "../../../store/actions/chat";
+import {
+  onlineFriends,
+  onlineFriend,
+  offlineFriend,
+} from "../../../store/actions/chat";
 import socketIOClient from "socket.io-client";
 
 const useSocket = (user, dispatch) => {
@@ -15,9 +19,11 @@ const useSocket = (user, dispatch) => {
     });
     socket.on("online", (user) => {
       console.log("Online", user);
+      dispatch(onlineFriend(user));
     });
     socket.on("offline", (user) => {
       console.log("Offline", user);
+      dispatch(offlineFriend(user));
     });
   }, [dispatch]);
 };
