@@ -30,6 +30,8 @@ const chatReducer = (state = initialState, action) => {
       return {
         ...state,
         currentChat: payload,
+        scrollBottom: state.scrollBottom + 1,
+        newMessage: { chatId: null, seen: null },
       };
     }
 
@@ -142,7 +144,7 @@ const chatReducer = (state = initialState, action) => {
               seen: false,
             };
           }
-          if (message.chatId == currentChatCopy.id) {
+          if (message.chatId === currentChatCopy.id) {
             currentChatCopy = {
               ...currentChatCopy,
               Messages: [...currentChatCopy.Messages, ...[message]],
