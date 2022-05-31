@@ -1,5 +1,28 @@
 @import "../../../../assets/scss/variables";
 
+#suggestions {
+  margin-top: 10px;
+  overflow-y: auto;
+  max-height: 300px;
+
+  .suggestion {
+    margin: 10px 0;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background-color: $success;
+      border-radius: 10px;
+      border: none;
+      height: 25px;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
 #chatter {
   overflow-y: auto;
   display: flex;

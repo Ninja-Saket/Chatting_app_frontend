@@ -51,7 +51,7 @@ const ChatHeader = ({ chat }) => {
       />
       {showChatOptions ? (
         <div id="settings">
-          <div>
+          <div onClick={() => setShowAddFriendModal(true)}>
             <FontAwesomeIcon icon={["fas", "user-plus"]} className="fa-icon" />
             <p>Add user to chat</p>
           </div>
