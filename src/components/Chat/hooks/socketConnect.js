@@ -9,6 +9,7 @@ import {
   senderTyping,
   createChat,
   addUserToGroup,
+  leaveCurrentChat,
 } from "../../../store/actions/chat";
 import socketIOClient from "socket.io-client";
 
@@ -45,6 +46,10 @@ const useSocket = (user, dispatch) => {
         });
         socket.on("added-user-to-group", (group) => {
           dispatch(addUserToGroup(group));
+        });
+        socket.on("remove-user-from-chat", (data) => {
+          data.currentUserId = user.id;
+          dispatch(leaveCurrentChat(data));
         });
         console.log(res);
       })
