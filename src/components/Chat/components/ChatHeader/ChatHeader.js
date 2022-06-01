@@ -49,8 +49,6 @@ const ChatHeader = ({ chat }) => {
 
   const clickHandler = () => {
     setShowChatOptions(!showChatOptions);
-    console.log(chat.type, "yoyo");
-    console.log(current);
     setChatType(chat.type);
   };
 

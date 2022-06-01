@@ -27,15 +27,12 @@ const useSocket = (user, dispatch) => {
           dispatch(senderTyping(sender));
         });
         socket.on("friends", (friends) => {
-          console.log("Friends", friends);
           dispatch(onlineFriends(friends));
         });
         socket.on("online", (user) => {
-          console.log("Online", user);
           dispatch(onlineFriend(user));
         });
         socket.on("offline", (user) => {
-          console.log("Offline", user);
           dispatch(offlineFriend(user));
         });
         socket.on("received", (message) => {
@@ -55,7 +52,6 @@ const useSocket = (user, dispatch) => {
         socket.on("delete-chat", (chatId) => {
           dispatch(deleteCurrentChat(chatId));
         });
-        console.log(res);
       })
       .catch((err) => console.log(err));
   }, [dispatch]);

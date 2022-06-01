@@ -7,7 +7,6 @@ import "./Messenger.scss";
 
 const Messenger = () => {
   const chat = useSelector((state) => state.chatReducer.currentChat);
-  console.log(chat.type);
   const activeChat = () => {
     return Object.keys(chat).length > 0;
   };
