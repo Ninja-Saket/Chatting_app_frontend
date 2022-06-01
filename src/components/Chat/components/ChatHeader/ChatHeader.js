@@ -9,11 +9,11 @@ import "./ChatHeader.scss";
 const ChatHeader = ({ chat }) => {
   const [suggestions, setSuggestions] = useState([]);
   const socket = useSelector((state) => state.chatReducer.socket);
-
   const [showChatOptions, setShowChatOptions] = useState(false);
   const [showAddFriendModal, setShowAddFriendModal] = useState(false);
   const [showLeaveChatModal, setShowLeaveChatModal] = useState(false);
   const [showDeleteChatModal, setShowDeleteChatModal] = useState(false);
+  const [chatType, setChatType] = useState("dual");
 
   const searchFriends = (e) => {
     ChatService.searchUsers(e.target.value).then((res) => setSuggestions(res));
@@ -22,6 +22,7 @@ const ChatHeader = ({ chat }) => {
   const addNewFriend = (id) => {
     ChatService.addFriendToGroupChat(id, chat.id)
       .then((data) => {
+        setChatType(data.chat.type);
         socket.emit("add-user-to-group", data);
         setShowAddFriendModal(false);
       })
@@ -31,10 +32,20 @@ const ChatHeader = ({ chat }) => {
   const leaveChat = () => {
     ChatService.leaveCurrentChat(chat.id)
       .then((data) => {
+        setChatType(data.chat.type);
         socket.emit("leave-current-chat", data);
       })
       .catch((err) => console.log(err));
   };
+
+  const deleteChat = () => {
+    ChatService.deleteCurrentChat(chat.id)
+      .then((data) => {
+        socket.emit("delete-chat", data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Fragment>
       <div id="chatter">
@@ -62,7 +73,7 @@ const ChatHeader = ({ chat }) => {
             <FontAwesomeIcon icon={["fas", "user-plus"]} className="fa-icon" />
             <p>Add user to chat</p>
           </div>
-          {chat.type === "group" ? (
+          {chatType === "group" ? (
             <div onClick={() => leaveChat()}>
               <FontAwesomeIcon
                 icon={["fas", "sign-out-alt"]}
@@ -71,10 +82,12 @@ const ChatHeader = ({ chat }) => {
               <p>Leave Chat</p>
             </div>
           ) : null}
-          <div>
-            <FontAwesomeIcon icon={["fas", "trash"]} className="fa-icon" />
-            <p>Delete Chat</p>
-          </div>
+          {chatType === "dual" ? (
+            <div onClick={() => deleteChat()}>
+              <FontAwesomeIcon icon={["fas", "trash"]} className="fa-icon" />
+              <p>Delete Chat</p>
+            </div>
+          ) : null}
         </div>
       ) : null}
       {showAddFriendModal && (
