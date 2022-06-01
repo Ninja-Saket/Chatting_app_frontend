@@ -5,6 +5,9 @@
   flex-direction: column;
   padding: 15px 0;
   background-color: #fff;
+  @media (max-width: 550px) {
+    height: 15vh;
+  }
 
   #title {
     display: flex;

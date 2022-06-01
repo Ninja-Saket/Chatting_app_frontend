@@ -33,7 +33,7 @@ const Navbar = () => {
 
   return (
     <div id="navbar" className="card-shadow">
-      <h2>Chat.io</h2>
+      <h2>SecureChat</h2>
       <div
         id="profile-menu"
         onClick={() => setShowProfileOptions(!showProfileOptions)}

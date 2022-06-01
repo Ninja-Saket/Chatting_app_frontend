@@ -52,9 +52,9 @@ const FriendList = () => {
       </div>
       {showFriendsModal && (
         <Modal closeModalHandler={() => setShowFriendsModal(false)}>
-          <Fragment key="header" />
-          <h3 className="m-0">Create new chat</h3>
-          <Fragment />
+          <Fragment key="header">
+            <h3 className="m-0">Create new chat</h3>
+          </Fragment>
 
           <Fragment key="body">
             <p>Find friends by typing their name below</p>
