@@ -3,7 +3,7 @@ import store from "../store";
 import { logout } from "../store/actions/auth";
 
 const API = axios.create({
-  baseURL: "http://127.0.0.1:3000",
+  baseURL: "https://secure-your-chat.herokuapp.com",
   headers: {
     Accept: "application/json",
     Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
