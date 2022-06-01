@@ -157,7 +157,6 @@ const chatReducer = (state = initialState, action) => {
               ...currentChatCopy,
               Messages: [...currentChatCopy.Messages, ...[message]],
             };
-            console.log(currentChatCopy);
           }
           return {
             ...chat,
@@ -312,7 +311,6 @@ const chatReducer = (state = initialState, action) => {
             Users: currentChatCopy.Users.filter((user) => user.id !== userId),
           };
         }
-        console.log(currentChatCopy, "yoooooooooooooo");
         return {
           ...state,
           chats: chatsCopy,
