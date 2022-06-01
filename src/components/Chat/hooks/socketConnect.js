@@ -18,7 +18,9 @@ const useSocket = (user, dispatch) => {
   useEffect(() => {
     dispatch(fetchChats())
       .then((res) => {
-        const socket = socketIOClient.connect("http://127.0.0.1:3000");
+        const socket = socketIOClient.connect(
+          "https://secure-your-chat.herokuapp.com"
+        );
 
         dispatch(setSocket(socket));
         socket.emit("join", user);
