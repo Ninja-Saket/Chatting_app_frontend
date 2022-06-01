@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { userStatus } from "../../../../utils/helpers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import "./ChatHeader.scss";
 const ChatHeader = ({ chat }) => {
   const [suggestions, setSuggestions] = useState([]);
   const socket = useSelector((state) => state.chatReducer.socket);
+  const current = useSelector((state) => state.chatReducer.currentChat);
   const [showChatOptions, setShowChatOptions] = useState(false);
   const [showAddFriendModal, setShowAddFriendModal] = useState(false);
   const [showLeaveChatModal, setShowLeaveChatModal] = useState(false);
@@ -46,6 +47,13 @@ const ChatHeader = ({ chat }) => {
       .catch((err) => console.log(err));
   };
 
+  const clickHandler = () => {
+    setShowChatOptions(!showChatOptions);
+    console.log(chat.type, "yoyo");
+    console.log(current);
+    setChatType(chat.type);
+  };
+
   return (
     <Fragment>
       <div id="chatter">
@@ -63,7 +71,7 @@ const ChatHeader = ({ chat }) => {
         })}
       </div>
       <FontAwesomeIcon
-        onClick={() => setShowChatOptions(!showChatOptions)}
+        onClick={clickHandler}
         icon={["fas", "ellipsis-v"]}
         className="fa-icon"
       />
@@ -90,11 +98,12 @@ const ChatHeader = ({ chat }) => {
           ) : null}
         </div>
       ) : null}
+
       {showAddFriendModal && (
         <Modal closeModalHandler={() => setShowAddFriendModal(false)}>
-          <Fragment key="header" />
-          <h3 className="m-0">Add friend to group chat</h3>
-          <Fragment />
+          <Fragment key="header">
+            <h3 className="m-0">Add friend to group chat</h3>
+          </Fragment>
 
           <Fragment key="body">
             <p>Find friends by typing their name below</p>

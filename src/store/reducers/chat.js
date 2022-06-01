@@ -253,6 +253,7 @@ const chatReducer = (state = initialState, action) => {
           exists = true;
           return {
             ...chatState,
+            type: chat.type,
             Users: [...chatState.Users, ...chatters],
           };
         }
@@ -268,6 +269,7 @@ const chatReducer = (state = initialState, action) => {
         if (chat.id === currentChatCopy.id) {
           currentChatCopy = {
             ...state.currentChat,
+            type: chat.type,
             Users: [...state.currentChat.Users, ...chatters],
           };
         }
@@ -281,7 +283,7 @@ const chatReducer = (state = initialState, action) => {
     }
 
     case LEAVE_CURRENT_CHAT: {
-      const { chatId, userId, currentUserId } = payload;
+      const { chat: chatLeft, chatId, userId, currentUserId } = payload;
 
       if (userId === currentUserId) {
         const chatsCopy = state.chats.filter((chat) => chat.id !== chatId);
@@ -295,6 +297,7 @@ const chatReducer = (state = initialState, action) => {
           if (chatId === chat.id) {
             return {
               ...chat,
+              type: chatLeft.type,
               Users: chat.Users.filter((user) => user.id !== userId),
             };
           }
@@ -305,9 +308,11 @@ const chatReducer = (state = initialState, action) => {
         if (currentChatCopy.id === chatId) {
           currentChatCopy = {
             ...currentChatCopy,
+            type: chatLeft.type,
             Users: currentChatCopy.Users.filter((user) => user.id !== userId),
           };
         }
+        console.log(currentChatCopy, "yoooooooooooooo");
         return {
           ...state,
           chats: chatsCopy,
